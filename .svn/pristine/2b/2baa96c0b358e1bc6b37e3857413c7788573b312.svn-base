@@ -1,0 +1,2 @@
+0,15 * * * * php /home/kantanand/projects/ask_analytics/trunk/scripts/send_mail.php >> /var/log/ask/ask_sendmail.log
+0  9 * * * php /home/kantanand/projects/ask_analytics/trunk/scripts/test_schedule_alert.php >> /var/log/ask/ask_sms.log

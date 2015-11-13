@@ -1,0 +1,45 @@
+package com.mobisir.askexpertauto.driver;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import com.mobisir.ahaguru.testscripts.Login;
+
+public class Scriptdriver {
+
+	public List selectScript(String modName){
+		ArrayList sList= new ArrayList();
+		try {
+			FileInputStream xlFile = new FileInputStream(".\\"+modName+".xlsx");
+			Workbook xlWorkbook = WorkbookFactory.create(xlFile);
+			Sheet sheetInstance = xlWorkbook.getSheet("scripts");
+			int rowCount = sheetInstance.getPhysicalNumberOfRows();
+			for(int index=0;index<rowCount;index++)
+			{
+				Row currRow =sheetInstance.getRow(index);
+				Cell stateCell = currRow.getCell(1);
+				String cellData = stateCell.getStringCellValue();
+				if(cellData.equals("y")){
+					System.out.println("ScriptName:" +currRow.getCell(0).getStringCellValue());
+					Cell firstCell = currRow.getCell(0);
+					sList.add(firstCell.getStringCellValue());
+					if(currRow.getCell(0).getStringCellValue().equals("StLogin")){
+						System.out.println("calling Login");
+						Login.StLogin();
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sList;		
+	}
+
+}

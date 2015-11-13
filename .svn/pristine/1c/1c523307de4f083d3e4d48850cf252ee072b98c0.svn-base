@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    #ReWrite Engine ON
+    RewriteEngine on
+    
+    #Check for Maintenace mode
+    RewriteCond /var/websites/skol/maintenance.mode -f
+    RewriteRule ^(.*)$ maintenance.html [L] 
+
+    #ReWrite Rules For SKOL
+    RewriteCond $1 !^(index\.php|images|imagelib|^(.*)\.png|^(.*)\.gif|^(.*)\.html|^(.*)\.jar|^(.*)\.jad|^(.*)\.js|^(.*)\.jpg|^(.*)\.css|^(.*)\.swf|^(.*)\.xml|^(.*)\.mcf|^(.*)\.conf|^(.*)\.svg|^(.*)\.flv|^(.*)\.mp4|^(.*)\.swf|^(.*)\.woff|^(.*)\.ttf|^(.*)\.pdf|^(.*)\.htm|^(.*)\.jpeg|^(.*)\.json|^(.*)\.ico|^(.*)\.properties)
+    RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>

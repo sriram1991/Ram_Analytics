@@ -1,0 +1,24 @@
+package com.mobisir.askexpertauto.driver;
+
+import java.util.List;
+
+import com.mobisir.askexpertauto.config.TestConfig;
+
+public class Start {
+
+	public static void main(String[] args) {
+		System.out.println("program starts...");
+		TestConfig.init();
+		Moduledriver mDriver = new Moduledriver();
+		List mList = mDriver.selectModules();
+		Scriptdriver sDriver = new Scriptdriver();
+		for(int modCount=0;modCount<mList.size();modCount++){
+			String modName = (String)mList.get(modCount);
+			System.out.println("Module name: "+modName);
+			List sList =sDriver.selectScript(modName);
+			}
+	
+		TestConfig.clean();
+		
+		System.out.println("program ends...");
+	}}

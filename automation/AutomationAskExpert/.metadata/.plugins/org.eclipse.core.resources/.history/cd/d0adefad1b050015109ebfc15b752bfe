@@ -1,0 +1,53 @@
+package com.mobisir.askexpertauto.driver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class Sample2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver= new FirefoxDriver();
+		driver.get("http://192.168.1.7/");
+		driver.findElement(By.name("loginname")).sendKeys("admin@askanalytics.com");
+		driver.findElement(By.name("password")).sendKeys("abc123");
+		driver.findElement(By.cssSelector("input[type=submit]")).click();
+		driver.findElement(By.cssSelector("div.small-box.bg-green")).click();
+		Thread.sleep(1000);
+		String beforeCount=driver.findElement(By.xpath("/html/body/div[3]/aside/section[2]/div/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")).getText();
+		
+		driver.findElement(By.cssSelector("a[class=dropdown-toggle]")).click();
+		driver.findElement(By.xpath("/html/body/header/nav/div/ul/li/ul/li[3]/div/a/i[2]")).click();
+		driver.findElement(By.linkText("Sign Up Here")).click();
+		driver.findElement(By.linkText("User")).click();
+		driver.findElement(By.name("student_first_name")).sendKeys("TestUser");
+		driver.findElement(By.name("student_middle_name")).sendKeys("user");
+		driver.findElement(By.name("student_last_name")).sendKeys("name");
+		driver.findElement(By.name("student_email")).sendKeys("soumya@mobisir.net");
+		driver.findElement(By.name("student_phone")).sendKeys("9740068877");
+		driver.findElement(By.name("address")).sendKeys("Address1");
+		driver.findElement(By.name("city")).sendKeys("Banglore");
+		new Select(driver.findElement(By.id("state"))).selectByVisibleText("Kerala");
+		driver.findElement(By.name("country")).sendKeys("India");
+		driver.findElement(By.name("pincode")).sendKeys("560076");
+		driver.findElement(By.className("iCheck-helper")).click();
+		driver.findElement(By.cssSelector("button[type=button]")).click();
+		
+		
+		driver.findElement(By.name("loginname")).sendKeys("admin@askanalytics.com");
+		driver.findElement(By.name("password")).sendKeys("abc123");
+		driver.findElement(By.cssSelector("input[type=submit]")).click();
+		driver.findElement(By.cssSelector("div.small-box.bg-green")).click();
+		Thread.sleep(1000);
+		String afterCount=driver.findElement(By.xpath("/html/body/div[3]/aside/section[2]/div/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")).getText();
+			
+		if(beforeCount.equals(afterCount))
+			System.out.println("Signup:Fail");
+		else
+			System.out.println("Signup:Pass");
+		}
+
+}
+

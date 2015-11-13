@@ -1,0 +1,166 @@
+        <style type="text/css">
+            #rank_filters{
+                margin-left: 5%;
+            }
+        </style>
+        <div class="sometype filter-list" id="rank_filters">
+            <br>
+            <div class="row">
+                <!-- Country Filter -->
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group control-group">
+                        <div class="control">
+                            <select name="user_country" autocomplete="off" id="user_country" class="form-control input" size="1" tabindex="1">
+                            <!-- <option value="" selected="">State</option> -->
+                            <?php 
+                                if(isset($country_list)){
+                                    echo "<option value='ALL_Countrys'>All Countrys</option>";
+                                    foreach ($country_list as $list) {
+                                        echo "<option value=\"$list->user_country\">".$list->user_country."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>No Data available !</option>";
+                                }
+                            ?>
+                            </select>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                
+                <!-- State Filster -->
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group control-group">
+                        <div class="control">
+                            <select name="user_state" autocomplete="off" id="user_state" class="form-control input" size="1" tabindex="1">
+                            <!-- <option value="" selected="">State</option> -->
+                            <?php 
+                                if(isset($state_list)){
+                                    echo "<option value='ALL_States'>All States</option>";
+                                    foreach ($state_list as $list) {
+                                        echo "<option value=\"$list->user_state\">".$list->user_state."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>No Data available !</option>";
+                                }
+                            ?>
+                            </select>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                
+                <!-- Area of interest Filter -->
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group control-group">
+                        <div class="control">
+                            <select name="area_of_interest" autocomplete="off" id="area_of_interest" class="form-control input" size="1" tabindex="1">
+                            <!-- <option value="" selected="">State</option> -->
+                            <?php 
+                                if(isset($aoi_list)){
+                                    echo "<option value='ALL_AOI'>All Area of Interest</option>";
+                                    foreach ($aoi_list as $list) {
+                                        echo "<option value=\"$list->test_subject\">".$list->test_subject."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>No Data available !</option>";
+                                }
+                            ?>
+                            </select>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                
+                <!-- Course Filter -->
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group control-group">
+                        <div class="control">
+                            <select name="course_id" autocomplete="off" id="course_id" class="form-control input" size="1" tabindex="1">
+                            <!-- <option value="" selected="">State</option> -->
+                            <?php 
+                                if(isset($course_list)){
+                                    echo "<option value='ALL_Courses'>All Courses</option>";
+                                    foreach ($course_list as $list) {
+                                        echo "<option value=\"$list->course_id\">".$list->course_name."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>No Data available !</option>";
+                                }
+                            ?>
+                            </select>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                
+                <!-- Test Name / No Filter -->
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="form-group control-group">
+                        <div class="control">
+                            <select name="test_no" autocomplete="off" id="test_no" class="form-control input" size="1" tabindex="1">
+                            <!-- <option value="" selected="">State</option> -->
+                            <?php 
+                                if(isset($test_name_list)){
+                                    echo "<option value='ALL_Test'>All Test</option>";
+                                    foreach ($test_name_list as $list) {
+                                        echo "<option value=\"$list->test_no\">".$list->test_name."</option>";
+                                    }
+                                } else {
+                                    echo "<option value=''>No Data available !</option>";
+                                }
+                            ?>
+                            </select>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                    <div class="btn-group" role="group">
+                        <button class='btn btn-primary' type='button' onClick="get_new_student_report();">Go</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <br> -->
+            <!-- <div class="btn-group" role="group"> -->
+                <!-- <button type="button" class="btn btn-primary icon-students" data-toggle="modal" data-target="#addStudentModal" onClick="add_student_modal();" >
+                  Add User
+                </button>  --> 
+            <!-- </div> -->
+        </div> <br>
+
+        <div class="box" id="new_students_ranks">
+            <!-- AJAX Will Bring The all student rank list -->
+            <br><br><br><center><h4> Please Select The Search Filters !</h4></center><br><br><br>
+        </div><!-- /.box -->
+<script type="text/javascript">
+function get_new_student_report(){
+    // Collect All Details 
+    var user_country = $('#rank_filters').find('#user_country').val();  
+    var user_state   = $('#rank_filters').find('#user_state').val();
+    var user_aoi     = $('#rank_filters').find('#area_of_interest').val(); 
+    var course_id    = $('#rank_filters').find('#course_id').val();
+    var test_no      = $('#rank_filters').find('#test_no').val();
+
+    $.ajax({
+        type: "POST",
+        url : "/reports/get_new_student_rank_list",
+        data: {
+            user_country : user_country,
+            user_state   : user_state,
+            user_aoi     : user_aoi,
+            course_id    : course_id,
+            test_no      : test_no
+        },
+        success:function(response){
+            $('#new_students_ranks').html('');
+            $('#new_students_ranks').html(response);
+            var rank_list = $("#rank_list").dataTable();
+            // console.log(response);
+        }
+    });
+}
+</script>

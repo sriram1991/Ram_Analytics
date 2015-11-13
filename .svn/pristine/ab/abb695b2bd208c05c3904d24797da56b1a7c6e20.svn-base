@@ -1,0 +1,5 @@
+browsertype=chrome
+testurl=http://www.ahaguru.com
+adminun=admin@email.com	
+adminpwd=password
+globaltimeout=60

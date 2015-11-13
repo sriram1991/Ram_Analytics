@@ -1,0 +1,24 @@
+<script type="text/javascript" src="country_state.js"></script>
+<body>
+    <div align="center">
+         <h1>Free JavaScript Country/State Selection Demo</h1>
+
+        <hr/>
+        <br/>Select Country (with states):
+        <select id="country" name="country"></select>
+        <br />State:
+        <select name="state" id="state"></select>
+        <br/>
+        <br />Select Country (without states):
+        <select id="country2" name="country2"></select>
+        <br />
+        <script language="javascript">
+            populateCountries("country", "state");
+            populateCountries("country2");
+        </script>
+        <br/>
+        <br/>
+        <br />
+        <br />
+    </div>
+</body>

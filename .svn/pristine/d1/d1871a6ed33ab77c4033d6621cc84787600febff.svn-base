@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.mobisir.askexpertauto.applib.Browser"/>
+<fullyQualifiedTypeName name="com.mobisir.askexpertauto.config.TestConfig"/>
+<fullyQualifiedTypeName name="com.mobisir.askexpertauto.genlib.WebAction"/>
+<fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+</qualifiedTypeNameHistroy>

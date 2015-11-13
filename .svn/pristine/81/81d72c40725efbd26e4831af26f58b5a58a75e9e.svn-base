@@ -1,0 +1,5 @@
+browsertype=firefox
+testurl=http://192.168.1.7/
+adminun=admin@email.com	
+adminpwd=password
+globaltimeout=60

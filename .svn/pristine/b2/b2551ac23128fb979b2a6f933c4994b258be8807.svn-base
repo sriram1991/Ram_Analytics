@@ -1,0 +1,9 @@
+Send Email Functionality 
+
+You need to install php-mail.
+
+eg: sudo apt-get install php-mail 
+
+reference:
+    http://stackoverflow.com/questions/712392/send-email-using-the-gmail-smtp-server-from-a-php-page
+    http://pear.php.net/package/Mail/download
