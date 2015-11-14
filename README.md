@@ -1,7 +1,7 @@
 <<<<<<< HEAD
-ask analytics Project
+SHARE Project
 =======
-# Ram_Analytics
+# Synergy SHARE
 
 this is an creation of admin management in PHP Coddeignitor
 
